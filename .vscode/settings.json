@@ -1,0 +1,8 @@
+{
+    "files.associations": {
+        "data_series.h": "c",
+        "gpio.h": "c",
+        "time.h": "c",
+        "unistd.h": "c"
+    }
+}
