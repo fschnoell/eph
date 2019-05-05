@@ -61,7 +61,7 @@ int save_to_file(int counter, int value, char* filename)
     if(NULL == fData_log)
     {
         fprintf(stderr, "[ DEBUG ] error opening file: %s\n", filename);
-        return NULL;
+        return -1;
     }
 
     fprintf(fData_log, "%d\t%d\n", counter, value);

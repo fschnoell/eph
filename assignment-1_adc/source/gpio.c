@@ -1,7 +1,7 @@
 /*
  * file name:	gpio.c
  * author: 		schaefer christian
- * date: 		28.04.2019
+ * date: 		05.05.2019
  */
 #include "../include/gpio.h"
 
@@ -59,7 +59,7 @@ int saveSPI(int amount, int interval, char filename[])
     for(i = 0; i < amount; i++)
     {
         new_data(series, readSPI(), filename);
-        usleep(interval);
+        delayMicroseconds(interval);
     }
     return 0;
 }
@@ -87,4 +87,26 @@ void toggleGPIO(int gpioPin)
         delay(1000);
         digitalWrite(gpioPin, LOW);
     }
+}
+
+/* 
+ * switches on a gpio pin
+ */ 
+int set_gpio_high(int gpioPin)
+{
+    fprintf(stderr, "[ DEBUG ] Set Pin %d to HIGH\n", gpioPin); 
+    pinMode(gpioPin, OUTPUT);
+    digitalWrite(gpioPin, HIGH);
+    return 0;
+}
+
+/* 
+ * switches off a gpio pin
+ */ 
+int set_gpio_low(int gpioPin)
+{
+    fprintf(stderr, "[ DEBUG ] Set Pin %d to LOW\n", gpioPin); 
+    pinMode(gpioPin, OUTPUT);
+    digitalWrite(gpioPin, LOW);
+    return 0;
 }

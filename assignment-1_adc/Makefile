@@ -64,7 +64,7 @@ $(shell mkdir -p $(dir $(DEP_FILES)) >/dev/null)
 CFLAGS = -g -Wall -Wextra -std=c89 -pedantic
 
 # linker flags
-LDFLAGS := -lwiringPi
+LDFLAGS := -lwiringPi -lrt
 
 # flags required for dependency generation; passed to compilers
 DEPFLAGS = -MT $@ -MD -MP -MF $(DEP_DIR)/$*.Td
