@@ -1,0 +1,10 @@
+\babel@toc {english}{}
+\contentsline {section}{\numberline {1}Inventarliste}{1}% 
+\contentsline {section}{\numberline {2}Strom- / Spannungsmessung und Verlauf aufnehmen mittels Raspberry Pi}{2}% 
+\contentsline {subsection}{\numberline {2.1}Vorbereitung}{2}% 
+\contentsline {subsection}{\numberline {2.2}ADC an den Raspberry Pi anschlie\IeC {\ss }en}{3}% 
+\contentsline {subsubsection}{\numberline {2.2.1}Kontrollfragen}{4}% 
+\contentsline {subsection}{\numberline {2.3}Spannungsmessung mit ADC und Potentiometer}{5}% 
+\contentsline {subsubsection}{\numberline {2.3.1}Visualiserung mittels \textit {gnuplot}}{5}% 
+\contentsline {subsubsection}{\numberline {2.3.2}Kontrollfragen}{5}% 
+\contentsfinish 
