@@ -28,6 +28,7 @@ DEP_DIR 	:= build/dep
 SOURCE_DIR  := source
 BUILD_DIR 	:= build
 PROJ_DIR	:= $(shell pwd)
+DATA_DIR	:= data
 
 # set compiler & linker
 CC 	:= gcc
@@ -87,6 +88,7 @@ dist: $(DISTFILES)
 .PHONY: clean
 clean:
 	$(RM) -r $(OBJ_DIR) $(DEP_DIR)
+	$(RM) -r $(DATA_DIR)/*
 
 .PHONY: distclean
 distclean: clean
