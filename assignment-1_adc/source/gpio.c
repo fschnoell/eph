@@ -60,6 +60,10 @@ int saveSPI(int amount, int interval, char filename[])
     {
         new_data(series, readSPI(), filename);
         delayMicroseconds(interval);
+        if(gl_keyCmd == STOP)
+        { 
+            break;
+        }
     }
     return 0;
 }

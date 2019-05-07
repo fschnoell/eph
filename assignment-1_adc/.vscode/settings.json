@@ -1,5 +1,11 @@
 {
     "files.associations": {
-        "gpio.h": "c"
+        "*.log.*": "log",
+        "messages": "log",
+        "*messages.*": "log",
+        "dmesg": "log",
+        "boot": "log",
+        "gpio.h": "c",
+        "main.h": "c"
     }
 }

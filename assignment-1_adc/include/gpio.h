@@ -12,6 +12,7 @@
 #include <time.h>
 #include <wiringPi.h>
 #include "../include/data_series.h"
+#include "../include/interrupt_handler.h"
 
 extern int PIN_BASE;
 extern int SPI_CHAN;
