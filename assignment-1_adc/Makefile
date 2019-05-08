@@ -17,10 +17,7 @@
 ## $ sudo adduser pi gpio
 #####################################################################
 
-# RPi network settings - key authentication required
-PI_ADDR 	:= 192.168.1.100
-PI_USER		:= scct
-PI_DIR		:= /home/scct/eph/
+PROJ_NAME 	:= assignment-1_adc
 
 # set directories
 OBJ_DIR 	:= build/obj
@@ -30,12 +27,19 @@ BUILD_DIR 	:= build
 PROJ_DIR	:= $(shell pwd)
 DATA_DIR	:= data
 
+# output binary
+TARGET := $(BUILD_DIR)/test
+
+# RPi network settings - key authentication required
+PI_ADDR 	:= 192.168.1.100
+PI_USER		:= scct
+PI_DIR		:= /home/scct/eph
+PI_PROJ_DIR	:= $(PI_DIR)/$(PROJ_NAME)
+PI_REMOTEBIN:= $(PI_DIR)/$(PROJ_NAME)/$(TARGET)
+
 # set compiler & linker
 CC 	:= gcc
 LD 	:= gcc
-
-# output binary
-TARGET := $(BUILD_DIR)/test
 
 # find our source files (recursively)
 SOURCE_FILES := $(wildcard $(SOURCE_DIR)/*.c) 
@@ -64,7 +68,7 @@ $(shell mkdir -p $(dir $(DEP_FILES)) >/dev/null)
 CFLAGS = -g -Wall -Wextra -std=c89 -pedantic
 
 # linker flags
-LDFLAGS := -lwiringPi -lrt
+LDFLAGS := -lwiringPi -lrt -lpthread
 
 # flags required for dependency generation; passed to compilers
 DEPFLAGS = -MT $@ -MD -MP -MF $(DEP_DIR)/$*.Td
@@ -111,8 +115,22 @@ install:
 .PHONY: sync
 sync:
 	@echo syncing local directory $(PROJ_DIR) to RPi $(PI_USER)@$(PI_ADDR):$(PI_DIR)
-	$(shell rsync -a $(PROJ_DIR) $(PI_USER)@$(PI_ADDR):$(PI_DIR))
+	$(shell rsync -a $(PROJ_DIR) $(PI_USER)@$(PI_ADDR):$(PI_DIR)/)
 
+.PHONY: data
+data:
+	@echo syncing remote data folder to host 
+
+.PHONY: rbuild
+rbuild: 
+	@echo building remotely on $(PI_ADDR)
+	$(shell ssh $(PI_ADDR) 'cd $(PI_PROJ_DIR); make')
+
+.PHONY: rtest
+rtest:
+	@echo executing remotely on $(PI_ADDR)
+	@echo ssh $(PI_ADDR) '$(PI_REMOTEBIN) 2>/dev/null'
+	#$(shell ssh $(PI_ADDR) '$(PI_REMOTEBIN) 2>/dev/null' )
 
 .PHONY: uninstall
 uninstall:
