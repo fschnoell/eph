@@ -10,17 +10,27 @@
 #include <stdio.h>
 #include <string.h>
 #include <unistd.h>
+#include <math.h>
 
-typedef struct data
+#define e_constant 2.71828
+
+typedef struct analog_value
 {   
     int pos;
-    int value;
-    struct data* next;
-} data;
+    double data;
+    struct analog_value* next;
+} analog_value;
 
-data*   init_series();
-data*   new_data(data* series, int val, char filename[]);
-int     save_to_file(int counter, int value, char* filename);
-int     check_file(char* filename);
+double resistor;
+double capacitor;
+
+analog_value*   init_series();
+analog_value*   new_data(analog_value* series, int val, char voltage_file[]);
+double          calc_current(double voltage, double time, double resistor, double capacitor);
+int             calculate_current_series(int interval, char input_log[], char output_log[], int charging_state);
+int             save_to_file(int counter, double value, char* file);
+int             check_file(char* filename);
+void            set_capacitor(double value);
+void            set_resistor(double value);
 
 #endif

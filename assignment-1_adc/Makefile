@@ -36,6 +36,7 @@ PI_USER		:= scct
 PI_DIR		:= /home/scct/eph
 PI_PROJ_DIR	:= $(PI_DIR)/$(PROJ_NAME)
 PI_REMOTEBIN:= $(PI_DIR)/$(PROJ_NAME)/$(TARGET)
+PI_DATA_DIR	:= $(PI_DIR)/$(PROJ_NAME)/$(DATA_DIR)
 
 # set compiler & linker
 CC 	:= gcc
@@ -68,7 +69,7 @@ $(shell mkdir -p $(dir $(DEP_FILES)) >/dev/null)
 CFLAGS = -g -Wall -Wextra -std=c89 -pedantic
 
 # linker flags
-LDFLAGS := -lwiringPi -lrt -lpthread
+LDFLAGS := -lwiringPi -lrt -lpthread -lm
 
 # flags required for dependency generation; passed to compilers
 DEPFLAGS = -MT $@ -MD -MP -MF $(DEP_DIR)/$*.Td
@@ -120,17 +121,19 @@ sync:
 .PHONY: data
 data:
 	@echo syncing remote data folder to host 
+	$(shell rsync -chavzP $(PI_USER)@$(PI_ADDR):$(PI_DATA_DIR) . > /dev/null 2>&1)
 
 .PHONY: rbuild
 rbuild: 
-	@echo building remotely on $(PI_ADDR)
-	$(shell ssh $(PI_ADDR) 'cd $(PI_PROJ_DIR); make')
+	@echo TBD building remotely on $(PI_ADDR)
+	#$(shell ssh $(PI_ADDR) 'cd $(PI_PROJ_DIR); make')
 
 .PHONY: rtest
 rtest:
 	@echo executing remotely on $(PI_ADDR)
-	@echo ssh $(PI_ADDR) '$(PI_REMOTEBIN) 2>/dev/null'
-	#$(shell ssh $(PI_ADDR) '$(PI_REMOTEBIN) 2>/dev/null' )
+	$(shell ssh $(PI_ADDR) '$(PI_REMOTEBIN) > /dev/null 2>&1')
+	@echo done
+
 
 .PHONY: uninstall
 uninstall:

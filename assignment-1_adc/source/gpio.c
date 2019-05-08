@@ -8,16 +8,19 @@
 /* variable declarations - default values */
 int PIN_BASE = 100;
 int SPI_CHAN = 0;
-data* series;
+analog_value* series;
+
 
 /*
  * initializes the gpio library and interfaces
  * returns 0 if successfull
  */
-int init()
+int init(double resistor, double capacitor)
 {
     int ret = wiringPiSetup();
     series = init_series();
+    set_resistor(resistor);
+    set_capacitor(capacitor);
 
     if(ret)
     {
@@ -37,7 +40,7 @@ int init()
  * saves a defined amount of values in a file with a given interval (in us)
  * eg:../data/spi_values.
  */
-int saveSPI(int amount, int interval, char filename[])
+int saveSPI(int amount, int interval, char voltage_filename[])
 {
     int i;
     if(NULL == series)
@@ -46,19 +49,19 @@ int saveSPI(int amount, int interval, char filename[])
         return -1;
     }
 
-    if(NULL == filename || strlen(filename) < 1 )
+    if(NULL == voltage_filename || strlen(voltage_filename) < 1 )
     {
-        fprintf(stderr, "[ DEBUG ] no file specified - will not save\n");
-        filename = NULL;
+        fprintf(stderr, "[ DEBUG ] no voltage file specified - will not save\n");
+        voltage_filename = NULL;
     }
     else
     {
-        fprintf(stderr, "[ DEBUG ] saving values to %s\n", filename);
+        fprintf(stderr, "[ DEBUG ] saving voltage values to %s\n", voltage_filename);
     }
 
     for(i = 0; i < amount; i++)
     {
-        new_data(series, readSPI(), filename);
+        new_data(series, readSPI(), voltage_filename);
         delayMicroseconds(interval);
         if(gl_keyCmd == STOP)
         { 

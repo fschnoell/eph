@@ -13,6 +13,7 @@
 #include <string.h>
 #include "../include/gpio.h"
 #include "../include/config.h"
+#include "../include/data_series.h"
 
 int main(void);
 

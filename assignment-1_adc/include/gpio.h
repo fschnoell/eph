@@ -17,9 +17,9 @@
 extern int PIN_BASE;
 extern int SPI_CHAN;
 
-int     init();
+int     init(double resistor, double capacitor);
 int     readSPI();
-int     saveSPI(int amount, int interval, char filename[]);
+int     saveSPI(int amount, int interval, char voltage_log[]);
 void    toggleGPIO(int pin);
 int     set_gpio_high(int gpioPin);
 int     set_gpio_low(int gpioPin);
