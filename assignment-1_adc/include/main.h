@@ -1,7 +1,7 @@
 /*
  * file name:	main.h
  * author: 		schaefer christian
- * date: 		05.05.2019
+ * date: 		10.05.2019
  */
 #ifndef MAIN_H
 #define MAIN_H
@@ -12,8 +12,10 @@
 #include <unistd.h>
 #include <string.h>
 #include "../include/gpio.h"
-#include "../include/config.h"
-#include "../include/data_series.h"
+#include "../include/data.h"
+
+extern header* charging_list;
+extern header* discharging_list;
 
 int main(void);
 

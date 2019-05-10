@@ -1,7 +1,7 @@
 /*
  * file name:	main.c
  * author: 		schaefer christian
- * date: 		05.05.2019
+ * date: 		10.05.2019
  */
 
 #include "../include/main.h"
@@ -9,38 +9,46 @@
 /* wiringPi Pin enumeration */
 #define BCM26 25
 
-/* to calculate the current we need to measure the overall voltage (over R & C) --> Channel 4 @ ADC
- * to be done
- * 
- * 
- */
+header* charging_list;
+header* discharging_list;
 
 int main(void)
 {
-    char *f_charging_curve = "/home/scct/eph/assignment-1_adc/data/cap_charging_curve.log";
-    char *f_discharging_curve = "/home/scct/eph/assignment-1_adc/data/cap_discharging_curve.log";
-    char *f_char_current_curve =  "/home/scct/eph/assignment-1_adc/data/cap_char_current.log";
-    char *f_dis_current_curve =  "/home/scct/eph/assignment-1_adc/data/cap_dis_current.log";
+    char *f_charge_voltage       = "/home/scct/eph/assignment-1_adc/data/f_charge_voltage.log";
+    char *f_charge_current       = "/home/scct/eph/assignment-1_adc/data/f_charge_current.log";
+    char *f_dis_charge_voltage   = "/home/scct/eph/assignment-1_adc/data/f_discharge_voltage.log";
+    char *f_dis_charge_current   = "/home/scct/eph/assignment-1_adc/data/f_discharge_current.log";
 
-    init(1000, 47e-06);
-
-    /* these values will not be saved */
-    /* saveSPI(10, 500, NULL); */
-
-
-    set_gpio_high(BCM26); 
+    init();
+    charging_list = init_data_list();
+    discharging_list = init_data_list();
+    
+    resistor  = 1000;
+    capacitor = 47e-06;
+    
     /* charging curve */
-    saveSPI(1024, 100, f_charging_curve);
+    set_gpio_output(BCM26, 1); 
+    save_spi_series(charging_list, 1024, 100);
+    
+    /* calculate currente */
+    calc_current_series(charging_list, 100e-06, 1);
 
-    /* discharging curve */
-    set_gpio_low(BCM26);
-    saveSPI(1024, 100, f_discharging_curve);
+    /* save results to file */
+    save_voltage_series_to_file(charging_list, f_charge_voltage);
+    save_current_series_to_file(charging_list, f_charge_current);
+    
+    /* discharging curve */     
+    set_gpio_output(BCM26, 0); 
+    save_spi_series(discharging_list, 1024, 100);
 
-    /* we cannot directly measure the current with the adc, so we have to calculate it afterwards */
-    calculate_current_series(100, f_charging_curve, f_char_current_curve, 0);
-    /* calculate_current_series(100, f_discharging_curve, f_dis_current_curve, 1); */
+     /* calculate currente */
+    calc_current_series(discharging_list, 100e-06, -1);
 
+    /* save results to file */
+    save_voltage_series_to_file(discharging_list, f_dis_charge_voltage);
+    save_current_series_to_file(discharging_list, f_dis_charge_current);
 
+  
 
     return 0;
 }

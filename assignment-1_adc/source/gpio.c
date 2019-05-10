@@ -1,26 +1,26 @@
 /*
  * file name:	gpio.c
  * author: 		schaefer christian
- * date: 		05.05.2019
+ * date: 		10.05.2019
  */
+
 #include "../include/gpio.h"
+
+#define gpio_voltage 3.3
 
 /* variable declarations - default values */
 int PIN_BASE = 100;
 int SPI_CHAN = 0;
-analog_value* series;
+
 
 
 /*
  * initializes the gpio library and interfaces
  * returns 0 if successfull
  */
-int init(double resistor, double capacitor)
+int init()
 {
     int ret = wiringPiSetup();
-    series = init_series();
-    set_resistor(resistor);
-    set_capacitor(capacitor);
 
     if(ret)
     {
@@ -40,80 +40,45 @@ int init(double resistor, double capacitor)
  * saves a defined amount of values in a file with a given interval (in us)
  * eg:../data/spi_values.
  */
-int saveSPI(int amount, int interval, char voltage_filename[])
+int save_spi_series(header* data_list, int amount, int interval)
 {
     int i;
-    if(NULL == series)
+    fprintf(stdout, "[ INFO ] starting to save data from spi\n");
+
+    if(NULL == data_list)
     {
         fprintf(stderr, "[ DEBUG ] series is NULL!\n");
         return -1;
     }
 
-    if(NULL == voltage_filename || strlen(voltage_filename) < 1 )
-    {
-        fprintf(stderr, "[ DEBUG ] no voltage file specified - will not save\n");
-        voltage_filename = NULL;
-    }
-    else
-    {
-        fprintf(stderr, "[ DEBUG ] saving voltage values to %s\n", voltage_filename);
-    }
-
     for(i = 0; i < amount; i++)
     {
-        new_data(series, readSPI(), voltage_filename);
+        /* save data here */
+        /* new_data(data_list, bin_to_voltage(analogRead(PIN_BASE + SPI_CHAN)) ,0); */
+        /* insert_tail(data_list, new_data(analogRead(PIN_BASE + SPI_CHAN), 0));   */    
+        insert_tail(data_list, new_data(bin_to_voltage(analogRead(PIN_BASE + SPI_CHAN)), 0));  
+
         delayMicroseconds(interval);
-        if(gl_keyCmd == STOP)
-        { 
-            break;
-        }
     }
     return 0;
 }
 
-/*
- * reads and returns the SPI value;
- */
-int readSPI()
-{    
-    return analogRead(PIN_BASE + SPI_CHAN);
-}
-
-/*
- * toggles a pin within a loop
- */
-void toggleGPIO(int gpioPin)
-{
-    pinMode(gpioPin, OUTPUT);
-
-    for(;;)
-    {
-        fprintf(stderr, "[ DEBUG ] Toggle: on ... "); 
-        digitalWrite(gpioPin, HIGH);
-        fprintf(stderr, "of\n"); 
-        delay(1000);
-        digitalWrite(gpioPin, LOW);
-    }
-}
-
 /* 
- * switches on a gpio pin
- */ 
-int set_gpio_high(int gpioPin)
+ * converts the read value (0-1023) into actual voltage values
+ */
+double bin_to_voltage(int binary)
 {
-    fprintf(stderr, "[ DEBUG ] Set Pin %d to HIGH\n", gpioPin); 
-    pinMode(gpioPin, OUTPUT);
-    digitalWrite(gpioPin, HIGH);
-    return 0;
+     return ( gpio_voltage / 1023) * (double)binary ;
 }
 
-/* 
- * switches off a gpio pin
- */ 
-int set_gpio_low(int gpioPin)
+/*
+ * sets a gpio high or low 
+ * int gpioPin: wiringPi Pin enumeration!
+ * int value:   1 (high) or 0 (low)
+ */
+void set_gpio_output(int gpioPin, int value)
 {
-    fprintf(stderr, "[ DEBUG ] Set Pin %d to LOW\n", gpioPin); 
+    fprintf(stderr, "[ DEBUG ] Set Pin %d to %d\n", gpioPin, value); 
     pinMode(gpioPin, OUTPUT);
-    digitalWrite(gpioPin, LOW);
-    return 0;
+    digitalWrite(gpioPin, value);
 }

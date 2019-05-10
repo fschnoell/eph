@@ -1,0 +1,23 @@
+# write plot to file
+set terminal png size 800,600
+set output 'rc_curve_voltage.png'
+
+# digram labeling
+set title "title"
+set ylabel "y"
+set xlabel "x"
+
+#set xrange [xmin:xmax]
+#set xrange [0:2.5]
+
+#set linestyles 
+set style line 1 lt 1 lw 1 pt 1 linecolor rgb "red"
+set style line 2 lt 1 lw 1 pt 1 linecolor rgb "blue"
+set style line 3 lt 1 lw 1 pt 1 linecolor rgb "orange"
+
+set grid x y
+# set the position of the legend:
+set key right center
+
+#plot only with points
+plot 'result_rc_voltage.txt' title 'voltage' ls 2

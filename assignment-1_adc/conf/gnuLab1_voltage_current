@@ -1,0 +1,31 @@
+# write plot to file
+set terminal png size 800,600
+set output 'rc_curve_voltage_current.png'
+
+# digram labeling
+set title "title"
+set ylabel "y"
+set xlabel "x"
+set y2label "y2"
+
+#set xrange [xmin:xmax]
+#set xrange [0:2.5]
+#set x2range [0:2.5]
+
+#set linestyles 
+set style line 1 lt 1 lw 1 pt 1 linecolor rgb "red"
+set style line 2 lt 1 lw 1 pt 1 linecolor rgb "blue"
+set style line 3 lt 1 lw 1 pt 1 linecolor rgb "orange"
+
+set ytics nomirror
+set y2tics
+set tics out
+set autoscale  y
+set autoscale y2
+set grid x y2
+# set the position of the legend:
+set key right center
+
+
+#plot only with points
+plot 'f_charge_voltage.log' axes x1y1 title 'voltage' ls 2, 'f_charge_current.log' axes x2y2 title 'current' ls 1

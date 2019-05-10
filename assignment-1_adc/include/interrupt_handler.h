@@ -19,8 +19,6 @@ enum KEY_CMD
     STOP
 };
 
-
-
 /* why volatile? - because we have global accessable variable which is used within a multi-threading application */
 volatile enum KEY_CMD gl_keyCmd;
 
