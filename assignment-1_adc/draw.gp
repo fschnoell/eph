@@ -25,7 +25,7 @@ set key right center
 
 #plot only with points
 set output 'rc_charging_curve_voltage_current.png'
-plot 'f_charge_voltage.log' axes x1y1 title 'voltage' ls 2, 'f_charge_current.log' axes x1y2 title 'charging curve of a capacitor' ls 1
+plot 'f_charge_voltage.log' axes x1y1 title 'voltage' ls 2, 'f_charge_current.log' axes x1y2 title 'current' ls 1
 
 set output 'rc_discharging_curve_voltage_current.png'
-plot 'f_discharge_voltage.log' axes x1y1 title 'voltage' ls 2, 'f_discharge_current.log' axes x1y2 title 'discharging curve of a capacitor' ls 1
+plot 'f_discharge_voltage.log' axes x1y1 title 'voltage' ls 2, 'f_discharge_current.log' axes x1y2 title 'current' ls 1
