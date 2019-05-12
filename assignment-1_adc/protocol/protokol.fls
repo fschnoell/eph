@@ -139,10 +139,10 @@ INPUT /home/scct/fh/eph/assignment-1_adc/protocol/protokol.toc
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmbx10.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmti10.tfm
 OUTPUT /home/scct/fh/eph/assignment-1_adc/protocol/protokol.toc
-INPUT /usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
-INPUT /usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
 OUTPUT /home/scct/fh/eph/assignment-1_adc/protocol/protokol.pdf
 INPUT /var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map
+INPUT /usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
+INPUT /usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmr12.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm
 INPUT /home/scct/fh/eph/assignment-1_adc/protocol/MCP3008-Pinbelegung.png

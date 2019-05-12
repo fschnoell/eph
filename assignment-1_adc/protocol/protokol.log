@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2019/dev/Debian) (preloaded format=pdflatex 2019.5.4)  12 MAY 2019 11:32
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2019/dev/Debian) (preloaded format=pdflatex 2019.5.4)  12 MAY 2019 16:02
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -540,53 +540,63 @@ Package caption Info: End \AtBeginDocument code.
 \tf@toc=\write3
 \openout3 = `protokol.toc'.
 
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 26.
+ [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
+
+]
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 27.
  (/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 26.
- [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
-
-]
-Overfull \hbox (45.32793pt too wide) in paragraph at lines 33--33
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 27.
+ [2]
+Overfull \hbox (45.32793pt too wide) in paragraph at lines 35--35
 []\OT1/cmr/bx/n/14.4 Strom- / Span-nungsmes-sung und Ver-lauf aufnehmen
  []
 
-<MCP3008-Pinbelegung.png, id=11, 185.69376pt x 146.5475pt>
+<MCP3008-Pinbelegung.png, id=15, 185.69376pt x 146.5475pt>
 File: MCP3008-Pinbelegung.png Graphic file (type png)
 <use MCP3008-Pinbelegung.png>
-Package pdftex.def Info: MCP3008-Pinbelegung.png  used on input line 44.
+Package pdftex.def Info: MCP3008-Pinbelegung.png  used on input line 46.
 (pdftex.def)             Requested size: 137.9979pt x 108.90854pt.
-[2 </home/scct/fh/eph/assignment-1_adc/protocol/MCP3008-Pinbelegung.png>]
-<RPi-Fritzing-Potentiometer_bb.png, id=15, 426.393pt x 283.459pt>
+[3 </home/scct/fh/eph/assignment-1_adc/protocol/MCP3008-Pinbelegung.png>]
+<RPi-Fritzing-Potentiometer_bb.png, id=19, 426.393pt x 283.459pt>
 File: RPi-Fritzing-Potentiometer_bb.png Graphic file (type png)
 <use RPi-Fritzing-Potentiometer_bb.png>
-Package pdftex.def Info: RPi-Fritzing-Potentiometer_bb.png  used on input line 57.
+Package pdftex.def Info: RPi-Fritzing-Potentiometer_bb.png  used on input line 60.
 (pdftex.def)             Requested size: 276.00105pt x 183.48491pt.
- [3 </home/scct/fh/eph/assignment-1_adc/protocol/RPi-Fritzing-Potentiometer_bb.png>] [4]
-Overfull \hbox (47.82588pt too wide) in paragraph at lines 105--106
+ [4 </home/scct/fh/eph/assignment-1_adc/protocol/RPi-Fritzing-Potentiometer_bb.png>] [5]
+Overfull \hbox (47.82588pt too wide) in paragraph at lines 108--109
 \OT1/cmr/bx/n/10 Finden Sie die wichtig-sten Ken-ngr^^?o^^Yen des ver-wen-de-ten ADCS MCP3004/3008
  []
 
-[5]
-Underfull \hbox (badness 10000) in paragraph at lines 169--171
+[6]
+Overfull \hbox (11.01534pt too wide) in paragraph at lines 132--137
+\OT1/cmr/m/n/10 Die gemesse-nen Werte wur-den in fol-gen-den For-mat in der Datei \OT1/cmr/m/it/10 f[]charge[]voltage.log
+ []
+
+[7]
+Overfull \hbox (65.28203pt too wide) in paragraph at lines 178--183
+\OT1/cmr/m/n/10 Die Strom- und Span-nungswerte wer-den aufgeze-ich-net und in die Dateien \OT1/cmr/m/it/10 f[]discharge[]voltage.log
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 185--187
 
  []
 
-[6]
-<rc_charging_curve_voltage_current.png, id=33, 602.25pt x 451.6875pt>
+<rc_charging_curve_voltage_current.png, id=37, 602.25pt x 451.6875pt>
 File: rc_charging_curve_voltage_current.png Graphic file (type png)
 <use rc_charging_curve_voltage_current.png>
-Package pdftex.def Info: rc_charging_curve_voltage_current.png  used on input line 177.
+Package pdftex.def Info: rc_charging_curve_voltage_current.png  used on input line 193.
 (pdftex.def)             Requested size: 276.00105pt x 207.00684pt.
- [7 </home/scct/fh/eph/assignment-1_adc/protocol/rc_charging_curve_voltage_current.png>]
-<rc_discharging_curve_voltage_current.png, id=40, 602.25pt x 451.6875pt>
+[8 </home/scct/fh/eph/assignment-1_adc/protocol/rc_charging_curve_voltage_current.png>]
+<rc_discharging_curve_voltage_current.png, id=43, 602.25pt x 451.6875pt>
 File: rc_discharging_curve_voltage_current.png Graphic file (type png)
 <use rc_discharging_curve_voltage_current.png>
-Package pdftex.def Info: rc_discharging_curve_voltage_current.png  used on input line 189.
+Package pdftex.def Info: rc_discharging_curve_voltage_current.png  used on input line 205.
 (pdftex.def)             Requested size: 276.00105pt x 207.00684pt.
- [8 </home/scct/fh/eph/assignment-1_adc/protocol/rc_discharging_curve_voltage_current.png>] (/home/scct/fh/eph/assignment-1_adc/protocol/protokol.lof)
+ [9 </home/scct/fh/eph/assignment-1_adc/protocol/rc_discharging_curve_voltage_current.png>] (/home/scct/fh/eph/assignment-1_adc/protocol/protokol.lof)
 \tf@lof=\write4
 \openout4 = `protokol.lof'.
 
@@ -594,20 +604,20 @@ Package pdftex.def Info: rc_discharging_curve_voltage_current.png  used on input
 \tf@lot=\write5
 \openout5 = `protokol.lot'.
 
- [9] (/home/scct/fh/eph/assignment-1_adc/protocol/protokol.aux) ) 
+ [10] (/home/scct/fh/eph/assignment-1_adc/protocol/protokol.aux) ) 
 Here is how much of TeX's memory you used:
  17476 strings out of 494485
  333983 string characters out of 6175793
- 361687 words of memory out of 5000000
+ 359687 words of memory out of 5000000
  21028 multiletter control sequences out of 15000+600000
  536424 words of font info for 39 fonts, out of 8000000 for 9000
  59 hyphenation exceptions out of 8191
- 41i,10n,63p,319b,973s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 41i,10n,63p,319b,969s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbxti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb>
-Output written on /home/scct/fh/eph/assignment-1_adc/protocol/protokol.pdf (9 pages, 333052 bytes).
+Output written on /home/scct/fh/eph/assignment-1_adc/protocol/protokol.pdf (10 pages, 333977 bytes).
 PDF statistics:
- 78 PDF objects out of 1000 (max. 8388607)
- 50 compressed objects within 1 object stream
+ 81 PDF objects out of 1000 (max. 8388607)
+ 52 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  21 words of extra memory for PDF output out of 10000 (max. 10000000)
 

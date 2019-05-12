@@ -1,14 +1,14 @@
 \babel@toc {english}{}
-\contentsline {section}{\numberline {1}Inventarliste}{1}% 
-\contentsline {section}{\numberline {2}Strom- / Spannungsmessung und Verlauf aufnehmen mittels Raspberry Pi}{2}% 
-\contentsline {subsection}{\numberline {2.1}Vorbereitung}{2}% 
-\contentsline {subsection}{\numberline {2.2}ADC an den Raspberry Pi anschlie\IeC {\ss }en}{3}% 
-\contentsline {subsection}{\numberline {2.3}Berechnung des Vorwiderstandes}{3}% 
-\contentsline {subsubsection}{\numberline {2.3.1}Kontrollfragen}{5}% 
-\contentsline {subsection}{\numberline {2.4}Spannungsmessung mit ADC und Potentiometer}{6}% 
-\contentsline {subsection}{\numberline {2.5}Berechnung des Stroms}{6}% 
-\contentsline {subsubsection}{\numberline {2.5.1}Visualiserung mittels \textit {gnuplot}}{7}% 
-\contentsline {paragraph}{Ladekurve}{7}% 
-\contentsline {paragraph}{Entladekurve}{8}% 
-\contentsline {subsubsection}{\numberline {2.5.2}Kontrollfragen}{8}% 
+\contentsline {section}{\numberline {1}Inventarliste}{2}% 
+\contentsline {section}{\numberline {2}Strom- / Spannungsmessung und Verlauf aufnehmen mittels Raspberry Pi}{3}% 
+\contentsline {subsection}{\numberline {2.1}Vorbereitung}{3}% 
+\contentsline {subsection}{\numberline {2.2}ADC an den Raspberry Pi anschlie\IeC {\ss }en}{4}% 
+\contentsline {subsection}{\numberline {2.3}Berechnung des Vorwiderstandes}{4}% 
+\contentsline {subsubsection}{\numberline {2.3.1}Kontrollfragen}{6}% 
+\contentsline {subsection}{\numberline {2.4}Spannungsmessung mit ADC und Potentiometer}{7}% 
+\contentsline {subsection}{\numberline {2.5}Berechnung des Stroms}{7}% 
+\contentsline {subsubsection}{\numberline {2.5.1}Visualiserung mittels \textit {gnuplot}}{8}% 
+\contentsline {paragraph}{Ladekurve}{8}% 
+\contentsline {paragraph}{Entladekurve}{9}% 
+\contentsline {subsubsection}{\numberline {2.5.2}Kontrollfragen}{9}% 
 \contentsfinish 

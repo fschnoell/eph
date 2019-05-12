@@ -21,23 +21,25 @@
 
 \tableofcontents
 
+\newpage
 \section{Inventarliste}
   \begin{itemize}
     \item Raspberry Pi 3
     \item Potentiometer Rx 10k \si{\ohm}
     \item MCP3008 (Analog-Digital Converter)
     \item Widerstand R1 1000 \si{\ohm}
+    \item Kondensator C1 47$\mu$F
   \end{itemize}
 
 \newpage
 \section{Strom- / Spannungsmessung und Verlauf aufnehmen mittels Raspberry Pi}
-In dieser Laborübung ging es um die Aufnahme von analogen Signalen mit dem Raspberry Pi und die digitale Verarbeitung. 
-Als analoge Signale dienen einerseits ein Spannungsabfall über einem Potentiometer sowie die Lade\- und Entladekurve eines Kondensators.
+In dieser Laborübung ging es um die Aufnahme von analogen Signalen und deren digitale Verarbeitung mithilfe des Raspberry Pi.
+Als analoge Signale dienen einerseits ein Spannungsabfall über einem Potentiometer sowie die Lade- und Entladekurve eines Kondensators.
 
 \subsection{Vorbereitung}
-Als Vorbereitung für das Labor wurde der Raspberry Pi konfiguriert und ein Programm für die Behandlung der digitalen Inputs erstellt.
-Weiteres wurde das Datenblatt für den Analog-Digital Converter (fortfolgend ADC) MCP3008 heruntergeladen. 
-Die Pinbelegung ist im nachfolgenden Figure~\ref{fig:ADCPinbelegung} ersichtlich.
+Als Vorbereitung für das Labor wurde der Raspberry Pi konfiguriert und ein C-Programm für die Behandlung der digitalen Inputs erstellt.
+Weiteres wurde das Datenblatt für den Analog-Digital Converter MCP3008 (fortfolgend ADC) heruntergeladen.
+Die Pinbelegung ist in Figure~\ref{fig:ADCPinbelegung} ersichtlich.
 
 \begin{figure}[h!]
     \centering
@@ -48,8 +50,9 @@ Die Pinbelegung ist im nachfolgenden Figure~\ref{fig:ADCPinbelegung} ersichtlich
 
 \newpage
 \subsection{ADC an den Raspberry Pi anschließen}
-Der MCP3008 ermöglicht die Verarbeitung von acht analogen Signalen, diese können an die linke Seite des ADC angeschlossen werden.
-Auf der Seite des Raspberry Pis muss die Hardware SPI Schnittstelle aktiviert werden. Danach ist es möglich mittels der \textit{wiringPi.h} Library die Schnittstelle anzusteuern.
+Der MCP3008 ermöglicht die Verarbeitung von acht analogen Signalen. Diese können an die linke Seite des ADC angeschlossen werden.
+Am Raspberry Pi muss die Hardware SPI Schnittstelle aktiviert werden.
+Danach ist es möglich mittels der \textit{wiringPi.h} Library die Schnittstelle anzusteuern.
 Die Verkabelung ist in Figure~\ref{fig:ADC-Verkabelung} visualisiert.
 
 \begin{figure}[h!]
@@ -62,13 +65,13 @@ Die Verkabelung ist in Figure~\ref{fig:ADC-Verkabelung} visualisiert.
 \subsection{Berechnung des Vorwiderstandes}
 Als Vorgabe wurde verlangt, dass innerhalb von $\tau$ 1/5 der Messwerte liegen. 
 Insgesamt sollten 1024 Messwerte mit einem Interval von 250 $\mu$s aufgenommen werden.
-Die Berechnungen sind in nachfolgenden Formel aufgeführt:
+Die Berechnungen sind in nachfolgender Formel aufgeführt:
 
 \begin{align*}
     \tau &=\frac{1024}{5} * 250\mu s\\
     \tau &=0.051s\\
 \end{align*}
-Der Kondenstator wurde vorgegeben ($c=47\mu F$), dadurch ergibt sich für den ohmschen Widerstand ungefähr 1000$\Omega$.
+Der Kondenstator wurde mit ($c=47\mu F$) vorgegeben. Dadurch ergibt sich für den ohmschen Widerstand ungefähr 1000$\Omega$.
 \begin{align*}
     R &= \frac{\tau}{c}\\
     R &= 1089,36\Omega\\
@@ -126,21 +129,21 @@ Die Pin Verkabelung des Raspberry Pis mit dem MCP3008 wird in nachstehender Tabe
 \newpage
 
 \subsection{Spannungsmessung mit ADC und Potentiometer}
-Die Verkablung mit dem Potentiometer wurde abgeschlossen, als nächstes wurde ein Programm entwickelt,
-welche die SPI Schnittstelle anspricht und die ausgelesenen Werte neben der Ausgabe in der Konsole, zusätzlich in eine Datei abspeichert.
-Um den Messvorgang zu starten, wird der GPIO-Pin 26 auf HIGH geschalten, dieser liefert 3.3 Volt an die Schaltung und versorgt den Kondensator.\\
-Um die Messungen zeitlich nicht zu sehr beeinflussen, werden die Werte zuerst in eine Liste gespeichert und danach in eine Datei ausgelagert.
-Die gemessenen Werte in folgenden Format in der Datei \textit{f\_charge\_voltage.log} abgespeichert:
+Die Verkablung mit dem Potentiometer wurde abgeschlossen. Als nächstes wurde ein Programm entwickelt, 
+welches die SPI Schnittstelle anspricht und die ausgelesenen Werte, neben der Ausgabe in der Konsole, in einer Datei abspeichert.t.
+Um den Messvorgang zu starten wird der GPIO-Pin 26 auf HIGH geschalten. Dieser liefert 3.3 Volt an die Schaltung und versorgt den Kondensator.\\
+Um die Messungen zeitlich nicht zu sehr beeinflussen, werden die Werte zuerst in eine Liste gespeichert und danach in eine Datei ausgelagert.\\
+Die gemessenen Werte wurden in folgenden Format in der Datei \textit{f\_charge\_voltage.log} abgespeichert:
+
+\noindent
+Counter: fortlaufender Zeilenindex\\
+Value: gemessene Spannung in Volt
 
 \begin{lstlisting}
 Counter Value
 0	0.045161
 1	0.061290
 2	0.077419
-3	0.103226
-4	0.125806
-5	0.145161
-6	0.154839
 ...
 1021	3.212903
 1022	3.216129
@@ -148,8 +151,8 @@ Counter Value
 \end{lstlisting}
 
 \subsection{Berechnung des Stroms}
-Zusätzlich musste der geflossene Strom festgehalten werden. Da es nicht möglich ist, mit dem ADC direkt den Strom zu messen, wird dieser berechnet.
-Um den Strom während der Kondenstator Ladung zu errechnen, bedient man sich folgender Formel:
+Zusätzlich musste der geflossene Strom ermittelt werden. Da es nicht möglich ist, mit dem ADC direkt den Strom zu messen, wird dieser berechnet.
+Folgende Formel wurde für die Berechnung des Ladestroms am Kondensator verwendet:
 
 \begin{equation}
     i=\frac{U}{R} * e^{-\frac{t}{\tau}}
@@ -157,20 +160,33 @@ Um den Strom während der Kondenstator Ladung zu errechnen, bedient man sich fol
 
 Gilt es den Strom der Entladekurve zu berechnen, wird folgende Formel angewandt:
 \begin{equation}
-    i=-\frac{U}{R} * e^{-\frac{t}{\tau}}
+    i=-\frac{U}{R} * e^{-\frac{t}{\tau}}\\
 \end{equation}
 
-Die Stromwerte werden in ebenfalls zuerst in eine Liste gespeichert und danach in eine Datei geschrieben.
-Der Vorgang wird für die Entladekurve des Kondensators wiederholt; um den Vorgang zu starten wird der GPIO Pin 26 auf LOW geschalten, 
-dadurch gibt es keine konstante Versorgung mehr für den Kondensator und er fängt an sich zu entladen.
-Die Strom- und Spannungswerte werden aufgezeichnet und die Dateien textit{f\_discharge\_voltage.log} und textit{f\_discharge\_current.log} geschrieben.
+wobei:
+\begin{table}[h!]
+    \begin{tabular}{lll}
+    $i$ & ...      & Strom (Ampere            \\
+    $U$ & ...      & Spannung (Volt)          \\
+    $R$ & ...     & Widerstand (Ohm)         \\
+    $s$ & ...     & Zeit (Sekunden)          \\
+    $\tau$ & ... & Zeitkonstante (Sekunden)
+    \end{tabular}
+\end{table}
+\newpage
+
+Die Stromwerte werden ebenfalls zuerst in einer Liste gespeichert und danach in eine Datei geschrieben.
+Der Vorgang wird für die Entladekurve des Kondensators wiederholt.\\
+Um den Entladevorgang des Kondensators zu starten wird der GPIO Pin 26 auf LOW geschalten. 
+Dadurch wird die Versorgungsspannung unterbrochen und der Kondensator entlädt sich am Widerstand.\\
+Die Strom- und Spannungswerte werden aufgezeichnet und in die Dateien \textit{f\_discharge\_voltage.log} und \textit{f\_discharge\_current.log} geschrieben.
 
 \subsubsection{Visualiserung mittels \textit{gnuplot}}
 Um die Messwerte der Ent- und Ladekurve visuell darzustellen, bediente man sich dem Programm \textit{gnuplot}. 
 Dies ermöglicht es, Dateien einzulesen und Werte in einem XY Diagramm darzustellen. \\
 
 \paragraph{Ladekurve}\mbox{}\\
-In folgendem Figure~\ref{fig:Ladekurve} kann man die Ladekurve des Kondensators deutlich erkennen. 
+In Figure~\ref{fig:Ladekurve} kann man die Ladekurve des Kondensators deutlich erkennen. 
 Der Strom ist am Anfang hoch, verringert sich jedoch nach einer Zeit, da die Kapazität des Kondensators mehr und mehr ansteigt.
 \begin{figure}[h!]
     \centering
@@ -187,7 +203,7 @@ Die Y-Achse des Stroms ist invertiert, man erkennt deutlich wie der Strom im Ver
 \begin{figure}[h!]
     \centering
     \includegraphics[width=0.8\textwidth]{rc_discharging_curve_voltage_current.png}
-    \caption{Ladekurve Kondensator}
+    \caption{Entladekurve Kondensator}
     \label{fig:Entladekurve}
 \end{figure}
 
