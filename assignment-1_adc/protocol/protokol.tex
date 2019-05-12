@@ -130,7 +130,7 @@ Die Verkablung mit dem Potentiometer wurde abgeschlossen, als nächstes wurde ei
 welche die SPI Schnittstelle anspricht und die ausgelesenen Werte neben der Ausgabe in der Konsole, zusätzlich in eine Datei abspeichert.
 Um den Messvorgang zu starten, wird der GPIO-Pin 26 auf HIGH geschalten, dieser liefert 3.3 Volt an die Schaltung und versorgt den Kondensator.\\
 Um die Messungen zeitlich nicht zu sehr beeinflussen, werden die Werte zuerst in eine Liste gespeichert und danach in eine Datei ausgelagert.
-Die gemessenen Werte in folgenden Format in der Datei \textit{f\_charge\_voltage} abgespeichert:
+Die gemessenen Werte in folgenden Format in der Datei \textit{f\_charge\_voltage.log} abgespeichert:
 
 \begin{lstlisting}
 Counter Value
@@ -163,7 +163,7 @@ Gilt es den Strom der Entladekurve zu berechnen, wird folgende Formel angewandt:
 Die Stromwerte werden in ebenfalls zuerst in eine Liste gespeichert und danach in eine Datei geschrieben.
 Der Vorgang wird für die Entladekurve des Kondensators wiederholt; um den Vorgang zu starten wird der GPIO Pin 26 auf LOW geschalten, 
 dadurch gibt es keine konstante Versorgung mehr für den Kondensator und er fängt an sich zu entladen.
-Die Strom- und Spannungswerte werden aufgezeichnet und die Dateien textit{f\_discharge\_voltage} und textit{f\_discharge\_current} geschrieben.
+Die Strom- und Spannungswerte werden aufgezeichnet und die Dateien textit{f\_discharge\_voltage.log} und textit{f\_discharge\_current.log} geschrieben.
 
 \subsubsection{Visualiserung mittels \textit{gnuplot}}
 Um die Messwerte der Ent- und Ladekurve visuell darzustellen, bediente man sich dem Programm \textit{gnuplot}. 
